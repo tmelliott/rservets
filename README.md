@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # rservets
@@ -25,7 +26,7 @@ create advanced web-apps powered by R.
 
 You can install the development version of rservets like so:
 
-```r
+``` r
 remotes::install_github('tmelliott/rservets')
 ```
 
@@ -33,28 +34,36 @@ remotes::install_github('tmelliott/rservets')
 
 Here are some demo functions in the packages `inst/demo` directory:
 
-```r
-library(rservets)
+**main.R**
 
-cat(readLines(system.file('demo/main.R', package = "rservets")), sep = "\n")
-#> #' @type x number
-#> #' @type fun "log" | "square" | "inverse"
-#> #' @result number
-#> transform <- function(x, fun) {
-#>     switch(fun, log = log(x), square = x^2, inverse = 1 / x)
-#> }
-#>
-#> #' @type x number[]
-#> #' @result { mean: number, stdDev: number }
-#> calculateSummary <- function(x) {
-#>     list(mean = mean(x), stdDev = sd(x))
-#> }
+``` r
+#' @type x number
+#' @type fun "log" | "square" | "inverse"
+#' @result number
+transform <- function(x, fun) {
+    switch(fun, log = log(x), square = x^2, inverse = 1 / x)
+}
+
+#' @type x number[]
+#' @result { mean: number, stdDev: number }
+calculateSummary <- function(x) {
+    list(mean = mean(x), stdDev = sd(x))
+}
 ```
 
-We can easily compile the output into a typescript definition:
+We can compile these functions into typescript definitions:
 
-```r
-compile_ts(system.file('demo/main.R', package = "rservets"), output = stdout())
-#> export function transform(x: number, fun: "log" | "square" | "inverse"): number;
-#> export function calculateSummary(x: number[]): { mean: number, stdDev: number };
+``` r
+library(rservets)
+compile_ts(
+  system.file('demo/main.R', package = "rservets"),
+  output = "main.d.ts"
+)
+```
+
+**main.d.ts**
+
+``` ts
+export function transform(x: number, fun: "log" | "square" | "inverse"): number;
+export function calculateSummary(x: number[]): { mean: number, stdDev: number };
 ```

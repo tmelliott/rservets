@@ -39,14 +39,29 @@ remotes::install_github('tmelliott/rservets')
 
 Here are some demo functions in the packages `inst/demo` directory:
 
-```{r example}
-library(rservets)
+**main.R**
 
+````{r example, echo = FALSE, results = "asis"}
+cat("```r\n")
 cat(readLines(system.file('demo/main.R', package = "rservets")), sep = "\n")
+cat("\n```\n")
+````
+
+We can compile these functions into typescript definitions:
+
+```{r compile}
+library(rservets)
+compile_ts(
+  system.file('demo/main.R', package = "rservets"),
+  output = "main.d.ts"
+)
 ```
 
-We can easily compile the output into a typescript definition:
+**main.d.ts**
 
-```{r output}
-compile_ts(system.file('demo/main.R', package = "rservets"), output = stdout())
-```
+````{r output, echo = FALSE, results = "asis"}
+cat("```ts\n")
+cat(readLines("main.d.ts"), sep = "\n")
+cat("\n```\n")
+unlink('main.d.ts')
+````
