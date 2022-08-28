@@ -1,0 +1,17 @@
+Package: rservets
+Title: Rserve wrappers for serving TypeScript-safe functions to JS apps
+Version: 0.0.0.9000
+Authors@R:
+    person("Tom", "Elliott", , "tom.elliott@auckland.ac.nz", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-7815-6318"))
+Description: Provides methods for easier development of Typescript-safe 'Rserve' methods to integrate into JS apps (e.g., using ReactJS, NextJS), particularly user interfaces. Capabilities to generate typescript definition files and assert result types at run-time.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports:
+    roxygen2,
+    Rserve
+Suggests:
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
