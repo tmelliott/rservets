@@ -1,5 +1,9 @@
 #' Compile TypeScript definitions
 #'
+#' @section Types
+#' Here is a table of R types and their corresponding TS type
+#'
+#'
 #' @param file the file containing marked-up R functions
 #' @param output the location to save ts type files
 #' @return null, called for sideeffect of writing a file

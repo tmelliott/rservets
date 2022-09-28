@@ -6,7 +6,15 @@ transform <- function(x, fun) {
 }
 
 #' @type x number[]
-#' @result { mean: number, stdDev: number }
+#' @result { mean: number; stdDev: number }
 calculateSummary <- function(x) {
     list(mean = mean(x), stdDev = sd(x))
+}
+
+#' @type x number | string | boolean
+#' @result string
+guessType <- function(x) {
+    if (is.numeric(x)) return("number")
+    if (is.character(x)) return("string")
+    "boolean"
 }

@@ -35,15 +35,15 @@ You can install the development version of rservets like so:
 remotes::install_github('tmelliott/rservets')
 ```
 
-## Example
+## 1. Compiling TypeScript definitions
 
 Here are some demo functions in the packages `inst/demo` directory:
 
-**main.R**
+**inst/demo_funs.R**
 
 ````{r example, echo = FALSE, results = "asis"}
 cat("```r\n")
-cat(readLines(system.file('demo/main.R', package = "rservets")), sep = "\n")
+cat(readLines(system.file('demo_funs.R', package = "rservets")), sep = "\n")
 cat("\n```\n")
 ````
 
@@ -52,7 +52,7 @@ We can compile these functions into typescript definitions:
 ```{r compile}
 library(rservets)
 compile_ts(
-  system.file('demo/main.R', package = "rservets"),
+  system.file('demo_funs.R', package = "rservets"),
   output = "main.d.ts"
 )
 ```
